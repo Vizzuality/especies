@@ -25,6 +25,7 @@
     <table class="table table-bordered table-condensed">
         <thead>
             <tr>
+                <th>Source id</th>
                 <th>Kingdom</th>
                 <th>Phylum</th>
                 <th>Order</th>
@@ -38,6 +39,7 @@
         <tbody>
             <g:each in="${species}" var="s">
                 <tr>
+                    <td>${s.get('source_id')}</td>
                     <td>${s.get('kingdom_name')}</td>
                     <td>${s.get('phylum_name')}</td>
                     <td>${s.get('order_name')}</td>

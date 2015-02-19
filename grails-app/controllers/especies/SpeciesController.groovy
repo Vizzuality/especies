@@ -7,7 +7,9 @@ class SpeciesController {
         def url = "https://simbiotica.cartodb.com/api/v1/sql"
         def my_q
         if(query != null) {
-            my_q = "SELECT * FROM species_list_merged where genus_name iLIKE '%"+query+"%' OR scientific_name iLIKE '" + query + "%' ORDER BY scientific_name"
+            my_q = "SELECT * FROM species_list_merged where genus_name iLIKE "+
+                    "'%"+query+"%' OR scientific_name iLIKE '" + query + "%' " +
+                    "ORDER BY scientific_name"
         } else {
             my_q = "SELECT * FROM species_list_merged LIMIT 100"
         }
