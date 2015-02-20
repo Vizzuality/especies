@@ -1,7 +1,7 @@
 package especies
 import grails.plugins.rest.client.RestBuilder
 
-class SpeciesController {
+class TaxaController {
 
     def index(String query) {
         def url = "https://simbiotica.cartodb.com/api/v1/sql"
@@ -15,12 +15,12 @@ class SpeciesController {
         }
 
         def result =  new RestBuilder().post(url+"?q={q}", [q: my_q]).json
-        def species
+        def taxa
         if(result.containsKey('rows')) {
-            species = result.get('rows')
+            taxa = result.get('rows')
         } else {
-            species = []
+            taxa = []
         }
-        render view: 'list', model: [ species: species ]
+        render view: 'list', model: [ taxa: taxa ]
     }
 }

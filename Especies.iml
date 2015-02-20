@@ -33,10 +33,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/utils" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/groovy" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/grails-app/domain" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/services" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/taglib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/integration" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/grails-app/domain" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target/classes" />
       <excludeFolder url="file://$MODULE_DIR$/target/work/plugin-build-classes" />
       <excludeFolder url="file://$MODULE_DIR$/target/work/plugin-classes" />
@@ -82,6 +82,7 @@
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-catalina-ant/7.0.55/tomcat-catalina-ant-7.0.55.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-rest-client/1.0.0.RELEASE/grails-datastore-rest-client-1.0.0.RELEASE.jar!/" />
           <root url="file://$MODULE_DIR$/lib" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/postgresql/postgresql/9.3-1101-jdbc41/postgresql-9.3-1101-jdbc41.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
