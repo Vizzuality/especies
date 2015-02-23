@@ -90,5 +90,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="Especies-grailsPlugins" />
+    <orderEntry type="library" name="opencsv-3.2" level="project" />
   </component>
 </module>
