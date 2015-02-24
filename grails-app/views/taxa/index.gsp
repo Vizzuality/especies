@@ -39,16 +39,16 @@
         <tbody>
             <g:each in="${taxa}" var="s">
                 <tr>
-                    <td>${s.get('source_id')}</td>
-                    <td>${s.get('kingdom_name')}</td>
-                    <td>${s.get('phylum_name')}</td>
-                    <td>${s.get('order_name')}</td>
-                    <td>${s.get('class_name')}</td>
-                    <td>${s.get('family_name')}</td>
-                    <td>${s.get('genus_name')}</td>
-                    <td>${s.get('scientific_name')}</td>
-                    <td class="${s.get('source') == 'Species+' ? "info" : "success"}">
-                        ${s.get('source')}
+                    <td>${s.sourceId}</td>
+                    <td>${s.kingdomName}</td>
+                    <td>${s.phylumName}</td>
+                    <td>${s.orderName}</td>
+                    <td>${s.className}</td>
+                    <td>${s.familyName}</td>
+                    <td>${s.genusName}</td>
+                    <td>${s.scientificName}</td>
+                    <td class="${s.source == 'Species+' ? "info" : "success"}">
+                        ${s.source}
                     </td>
                 </tr>
             </g:each>

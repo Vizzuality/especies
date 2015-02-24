@@ -4,6 +4,7 @@ class TaxaController {
 
     def index() {
         def taxa = Taxon.findAll()
+		System.out.println(taxa)
         [taxa: taxa]
     }
     
