@@ -1,26 +1,28 @@
 package especies
-import grails.plugins.rest.client.RestBuilder
 
 class TaxaController {
 
-    def index(String query) {
-        def url = "https://simbiotica.cartodb.com/api/v1/sql"
-        def my_q
-        if(query != null) {
-            my_q = "SELECT * FROM species_list_merged where genus_name iLIKE "+
-                    "'%"+query+"%' OR scientific_name iLIKE '" + query + "%' " +
-                    "ORDER BY scientific_name"
-        } else {
-            my_q = "SELECT * FROM species_list_merged LIMIT 100"
-        }
+    def index() {
+        def taxa = Taxon.findAll()
+        [taxa: taxa]
+    }
+    
+    def importTaxa() {
 
-        def result =  new RestBuilder().post(url+"?q={q}", [q: my_q]).json
-        def taxa
-        if(result.containsKey('rows')) {
-            taxa = result.get('rows')
-        } else {
-            taxa = []
+        def file = new File('data/species_list_CITES_copy.csv')
+        file.toCsvReader(['charset':'UTF-8', 'skipLines': 1]).eachLine { tokens ->
+            System.out.println(tokens[4].toString())
+            new Taxon(
+                kingdomName: tokens[5],
+                phylumName: tokens[7],
+                className: tokens[2],
+                orderName: tokens[6],
+                familyName: tokens[3],
+                genusName: tokens[4],
+                scientificName: tokens[8],
+                source: tokens[9],
+                sourceId: Integer.parseInt(tokens[10])
+            ).save(failOnError: true)
         }
-        render view: 'list', model: [ taxa: taxa ]
     }
 }

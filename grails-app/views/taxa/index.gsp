@@ -37,7 +37,7 @@
             </tr>
         </thead>
         <tbody>
-            <g:each in="${species}" var="s">
+            <g:each in="${taxa}" var="s">
                 <tr>
                     <td>${s.get('source_id')}</td>
                     <td>${s.get('kingdom_name')}</td>
