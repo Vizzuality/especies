@@ -5,8 +5,9 @@ import grails.transaction.Transactional
 @Transactional
 class TaxonService {
 
-    List list() {
-		return Taxon.list(max: 50)
+    List list(params) {
+		params = params + [max: 50]
+		return Taxon.list(params)
     }
 	
 	Taxon save(taxon) {

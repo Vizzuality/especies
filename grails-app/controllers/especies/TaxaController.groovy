@@ -7,8 +7,8 @@ class TaxaController {
 	def taxonService
 
     def index() {
-        def taxa = taxonService.list()
-        [taxa: taxa]
+        def taxa = taxonService.list(params)
+        [taxa: taxa, taxaCount: Taxon.count()]
     }
     
     def importTaxa() {
