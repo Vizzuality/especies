@@ -12,12 +12,14 @@
 </head>
 
 <body>
-    <h1>Taxonify</h1>
+    <h1>Taxonify <asset:image src="spinner.gif" alt="spinner" class="hide spinner" /></h1>
     <p>
-    	<button id="importBrazil" class="btn btn-info">Import Brazil's data</button>
-    	<button id="addSpeciesPlus" class="btn btn-info" disabled="disabled">
-    		Add Species Plus IDs</button>
-    	<button id="linkToGbif" class="btn btn-info" disabled="disabled">Link GBIF data</button>
+    	<button id="importBrazil" class="btn btn-info">
+    		Import Brazil's data
+    	</button>
+    	<button id="linkGbfiEtAl" class="btn btn-info">
+    		Link GBIF and S+ data
+    	</button>
     </p>
     <g:form url="[action:'index']" class="form-inline" method="get">
         <div class="form-group">
