@@ -3,9 +3,11 @@ package especies
 import grails.converters.JSON
 
 class TaxaController {
+	
+	def taxonService
 
     def index() {
-        def taxa = Taxon.list(max:50)
+        def taxa = taxonService.list()
         [taxa: taxa]
     }
     
@@ -16,7 +18,7 @@ class TaxaController {
 		// kingdom, phylum, class, order, family, genus, scientific_name, source_id
         def file = new File('data/species_list_Brazil.csv')
         file.toCsvReader(['charset':'UTF-8', 'skipLines': 1]).eachLine { tokens ->			
-            new Taxon(
+            taxon = new Taxon(
                 kingdomName: tokens[0] ? tokens[0] : "",
                 phylumName: tokens[1] ? tokens[1] : "",
                 className: tokens[2] ? tokens[2] : "",
@@ -25,9 +27,10 @@ class TaxaController {
                 genusName: tokens[5] ? tokens[5] : "",
                 scientificName: tokens[5] + ' ' + tokens[6],
                 sourceId: Integer.parseInt(tokens[7])
-            ).save(failOnError: true)
+            )
+			taxonService.save(taxon)
         }
-		def taxa = Taxon.list(max: 50)
+		def taxa = taxonService.list()
 		render taxa as JSON
     }
 	
@@ -38,30 +41,17 @@ class TaxaController {
 		
 		Taxon taxon
 		file.toCsvReader(['charset': 'UTF-8', 'skipLines': 1]).eachLine { tokens ->
-			if(tokens[4] == "#N/A") {
-				taxon = Taxon.findByScientificName(tokens[3])
-			} else {
-				taxon = Taxon.findBySourceId(tokens[4])
-			}
-			if(taxon != null && tokens[0] != "NULL") {
-				taxon.gbifId = Integer.parseInt(tokens[0])
-				taxon.gbifName = tokens[1]
-				taxon.save(failOnError: true)
-			}
+			taxonService.addGbifDetails(tokens[3], tokens[4], tokens[0], tokens[1])
 		}
 		// File format
 		// GBIF taxon key, GBIF scientific_name, rank, kingdom, provided spp name, species+ id
 		file = new File('data/GBIF_CITES_species_lookup.csv')
 		
 		file.toCsvReader(['charset': 'UTF-8', 'skipLines': 1]).eachLine { tokens ->
-			taxon = Taxon.findByGbifId(tokens[0])
-			if(taxon != null) {
-				taxon.speciesPlusId = Integer.parseInt(tokens[5])
-				taxon.save(failOnError: true)
-			}
+			taxonService.addSpeciesPlusId(tokens[0], tokens[5])
 		}
 		
-		def taxa = Taxon.list(max: 50)
+		def taxa = taxonService.list()
 		render taxa as JSON	
 	}
 	
@@ -79,7 +69,7 @@ class TaxaController {
 				taxon.save(failOnError: true)
 			}
 		}
-		def taxa = Taxon.list(max: 50)
+		def taxa = taxonService.list()
 		render taxa as JSON
 	}
 }
