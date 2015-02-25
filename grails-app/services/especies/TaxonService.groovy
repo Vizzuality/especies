@@ -7,6 +7,7 @@ class TaxonService {
 
     List list(params) {
 		params = params + [max: 50]
+		params = params + [sort: "scientificName", order: "asc"]
 		return Taxon.list(params)
     }
 	
