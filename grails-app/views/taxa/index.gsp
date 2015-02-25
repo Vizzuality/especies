@@ -12,7 +12,13 @@
 </head>
 
 <body>
-    <h1>Search some species</h1>
+    <h1>Taxonify</h1>
+    <p>
+    	<button id="importBrazil" class="btn btn-info">Import Brazil's data</button>
+    	<button id="addSpeciesPlus" class="btn btn-info" disabled="disabled">
+    		Add Species Plus IDs</button>
+    	<button id="linkToGbif" class="btn btn-info" disabled="disabled">Link GBIF data</button>
+    </p>
     <g:form url="[action:'index']" class="form-inline" method="get">
         <div class="form-group">
             <g:textField class="form-control input-fullsize" name="query" value="${params.query}" required="required" />
@@ -22,34 +28,30 @@
 
     <hr>
 
-    <table class="table table-bordered table-condensed">
+    <table id="taxa-table" class="table table-bordered table-condensed">
         <thead>
             <tr>
-                <th>Source id</th>
                 <th>Kingdom</th>
                 <th>Phylum</th>
                 <th>Order</th>
                 <th>Class</th>
                 <th>Family</th>
-                <th>Genus</th>
                 <th>Scientific Name</th>
-                <th>Source</th>
+                <th>Brazil's id</th>
+                <th>Species+ id</th>
             </tr>
         </thead>
         <tbody>
             <g:each in="${taxa}" var="s">
                 <tr>
-                    <td>${s.sourceId}</td>
                     <td>${s.kingdomName}</td>
                     <td>${s.phylumName}</td>
                     <td>${s.orderName}</td>
                     <td>${s.className}</td>
                     <td>${s.familyName}</td>
-                    <td>${s.genusName}</td>
                     <td>${s.scientificName}</td>
-                    <td class="${s.source == 'Species+' ? "info" : "success"}">
-                        ${s.source}
-                    </td>
+                    <td>${s.sourceId}</td>
+                    <td>${s.speciesPlusId}</td>
                 </tr>
             </g:each>
         </tbody>
