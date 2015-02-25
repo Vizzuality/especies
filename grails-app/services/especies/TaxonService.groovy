@@ -8,6 +8,14 @@ class TaxonService {
     List list(params) {
 		params = params + [max: 50]
 		params = params + [sort: "scientificName", order: "asc"]
+		def query
+		if(params.get('query') != null) {
+			query = Taxon.where {
+				scientificName =~ params.get('query')+'%'
+			}
+			return query.list(params)
+			
+		}
 		return Taxon.list(params)
     }
 	
