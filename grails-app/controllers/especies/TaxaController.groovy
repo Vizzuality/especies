@@ -38,9 +38,12 @@ class TaxaController {
 		
 		Taxon taxon
 		file.toCsvReader(['charset': 'UTF-8', 'skipLines': 1]).eachLine { tokens ->
-			System.out.println(tokens[4]+ " " + tokens[0])
-			taxon = Taxon.findBySourceId(tokens[4])
-			if(taxon != null) {
+			if(tokens[4] == "#N/A") {
+				taxon = Taxon.findByScientificName(tokens[3])
+			} else {
+				taxon = Taxon.findBySourceId(tokens[4])
+			}
+			if(taxon != null && tokens[0] != "NULL") {
 				taxon.gbifId = Integer.parseInt(tokens[0])
 				taxon.gbifName = tokens[1]
 				taxon.save(failOnError: true)

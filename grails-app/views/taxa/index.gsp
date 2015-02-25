@@ -41,6 +41,8 @@
                 <th>Scientific Name</th>
                 <th>Brazil's id</th>
                 <th>Species+ id</th>
+                <th>GBIF id</th>
+                <th>GBIF name</th>
             </tr>
         </thead>
         <tbody>
@@ -54,6 +56,8 @@
                     <td>${s.scientificName}</td>
                     <td>${s.sourceId}</td>
                     <td>${s.speciesPlusId}</td>
+                    <td>${s.gbifId }</td>
+                    <td>${s.gbifName}</td>
                 </tr>
             </g:each>
         </tbody>
