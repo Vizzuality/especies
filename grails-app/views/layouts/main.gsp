@@ -46,7 +46,10 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><g:link controller="taxa" action="index">Species</g:link>
+            <li class="${controllerName == "dashboard" ? "active" : "" }">
+              <g:link controller="dashboard" action="index">Dashboard</g:link>
+            <li class="${controllerName == "taxa" ? "active" : "" }">
+              <g:link controller="taxa" action="index">Species</g:link>
           </ul>
         </div>
 	      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
