@@ -21,12 +21,12 @@ class TaxaController {
 		
         file.toCsvReader(['charset':'UTF-8', 'skipLines': 1]).eachLine { tokens ->			
             taxon = new Taxon(
-                kingdomName: tokens[0] ? tokens[0] : "",
-                phylumName: tokens[1] ? tokens[1] : "",
-                className: tokens[2] ? tokens[2] : "",
-                orderName: tokens[3] ? tokens[3] : "",
-                familyName: tokens[4] ? tokens[4] : "",
-                genusName: tokens[5] ? tokens[5] : "",
+                kingdomName: tokens[0]?:"",
+                phylumName: tokens[1]?: "",
+                className: tokens[2]?: "",
+                orderName: tokens[3]?: "",
+                familyName: tokens[4]?: "",
+                genusName: tokens[5]?: "",
                 scientificName: tokens[5] + ' ' + tokens[6],
                 sourceId: Integer.parseInt(tokens[7])
             )
