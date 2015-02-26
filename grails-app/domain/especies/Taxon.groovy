@@ -21,5 +21,6 @@ class Taxon {
 		gbifName nullable: true
 		gbifId nullable: true
 		speciesPlusId nullable: true
+		sourceId unique: true
     }
 }
