@@ -8,25 +8,26 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <head>
     <meta name="layout" content="main">
-    <title>Species Index</title>
 </head>
 
 <body>
     <h1>Taxonify <asset:image src="spinner.gif" alt="spinner" class="hide spinner" /></h1>
     <p>
-    	<button id="importBrazil" class="btn btn-info">
-    		Import Brazil's data
-    	</button>
-    	<button id="linkGbfiEtAl" class="btn btn-info">
-    		Link GBIF and S+ data
-    	</button>
+	    <g:form url="[action:'index']" class="form-inline" method="get">
+		    <div class="form-group">
+	        <button id="importBrazil" class="btn btn-info">
+	         Import Brazil's data
+	        </button>
+		      <button id="linkGbfiEtAl" class="btn btn-info">
+		        Link GBIF and S+ data
+		      </button>
+	        <g:textField class="form-control input-fullsize" name="query"
+	         value="${params.query}" required="required"
+	         placeholder="Search taxa"/>
+	       </div>
+	       <g:submitButton name="submit" value="Search" class="btn btn-default"/>
+	    </g:form>
     </p>
-    <g:form url="[action:'index']" class="form-inline" method="get">
-        <div class="form-group">
-            <g:textField class="form-control input-fullsize" name="query" value="${params.query}" required="required" />
-        </div>
-        <g:submitButton name="submit" value="Search" class="btn btn-default"/>
-    </g:form>
 
     <hr>
 	<g:paginate controller="taxa" action="index" total="${taxaCount}" max="50" />

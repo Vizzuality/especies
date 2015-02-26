@@ -18,6 +18,7 @@ class TaxaController {
 		// kingdom, phylum, class, order, family, genus, scientific_name, source_id
         def file = new File('data/species_list_Brazil.csv')
         Taxon taxon
+		
         file.toCsvReader(['charset':'UTF-8', 'skipLines': 1]).eachLine { tokens ->			
             taxon = new Taxon(
                 kingdomName: tokens[0] ? tokens[0] : "",
