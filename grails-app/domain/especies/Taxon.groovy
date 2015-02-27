@@ -14,6 +14,8 @@ class Taxon {
     Integer gbifId
 	Integer speciesPlusId
 
+	static hasMany = [distributions: Distribution]
+	
     static constraints = {
 		phylumName nullable: true
 		orderName nullable: true
