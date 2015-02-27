@@ -37,6 +37,7 @@
                 <th>Class</th>
                 <th>Family</th>
                 <th>Scientific Name</th>
+                <th>Name status</th>
                 <th>Brazil's id</th>
                 <th>Species+ id</th>
                 <th>GBIF id</th>
@@ -52,6 +53,7 @@
                     <td>${s.className}</td>
                     <td>${s.familyName}</td>
                     <td>${s.scientificName}</td>
+                    <td>${s.nameStatus}</td>
                     <td>${s.sourceId}</td>
                     <td>${s.speciesPlusId}</td>
                     <td>${s.gbifId }</td>

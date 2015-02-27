@@ -16,6 +16,7 @@ $(function(){
 								data[i].orderName +'</td><td>'+
 								data[i].familyName +'</td><td>'+
 								data[i].scientificName +'</td><td>'+
+								data[i].nameStatus +'</td><td>'+
 								data[i].sourceId+'</td><td>'+
 								data[i].speciesPlusId +'</td><td>'+
 			                    data[i].gbifId +'</td><td>'+

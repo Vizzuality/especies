@@ -8,6 +8,7 @@ class Taxon {
     String familyName
     String genusName
     String scientificName
+	String nameStatus
 	String gbifName
     Integer sourceId
     Integer gbifId
@@ -18,6 +19,7 @@ class Taxon {
 		orderName nullable: true
 		className nullable: true
 		familyName nullable: true
+		nameStatus nullable: true
 		gbifName nullable: true
 		gbifId nullable: true
 		speciesPlusId nullable: true

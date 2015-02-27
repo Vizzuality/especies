@@ -21,12 +21,12 @@ class ImportDataService {
 		query = "CREATE TABLE tmp_brazil_data (kingdom_name varchar,"+
 			"phylum_name varchar, class_name varchar, order_name varchar,"+
 			"family_name varchar, genus_name varchar, scientific_name varchar,"+
-			"source_id integer);"
+			"name_status varchar, source_id integer);"
 		sql.execute(query)
 		
 		//copy Brazil's data
 		query = "COPY tmp_brazil_data (kingdom_name, phylum_name, class_name,"+
-			"order_name, family_name, genus_name, scientific_name, source_id)"+
+			"order_name, family_name, genus_name, scientific_name, name_status, source_id)"+
 			" FROM '" + file.absolutePath + "'" +
 			" WITH DELIMITER ','"+
 			" ENCODING 'utf-8' CSV HEADER;"
@@ -35,10 +35,10 @@ class ImportDataService {
 		// clear taxon table and rebuild with imported data
 		query = "DELETE FROM taxon;" +
 			"INSERT INTO taxon (version, kingdom_name, phylum_name, class_name, order_name,"+
-			"family_name, genus_name, scientific_name, source_id)"+
+			"family_name, genus_name, scientific_name, name_status, source_id)"+
 			"SELECT DISTINCT 0, kingdom_name, phylum_name, class_name,"+
 			"order_name, family_name, genus_name, genus_name || ' ' || scientific_name,"+
-			"source_id"+
+			"name_status, source_id"+
 			" FROM tmp_brazil_data;"
 		sql.execute(query)
 		
