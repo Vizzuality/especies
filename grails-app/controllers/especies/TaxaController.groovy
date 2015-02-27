@@ -5,7 +5,8 @@ import grails.converters.JSON
 class TaxaController {
 	
 	def taxonService
-
+	def importDataService
+	
     def index() {
         def taxa = taxonService.list(params)
         [taxa: taxa, taxaCount: Taxon.count()]
@@ -16,23 +17,25 @@ class TaxaController {
 		// import Brazil's species
 		// File format:
 		// kingdom, phylum, class, order, family, genus, scientific_name, source_id
-        def file = new File('data/species_list_Brazil.csv')
-        Taxon taxon
+//        def file = new File('data/species_list_Brazil.csv')
+//        Taxon taxon
 		
-        file.toCsvReader(['charset':'UTF-8', 'skipLines': 1]).eachLine { tokens ->			
-            taxon = new Taxon(
-                kingdomName: tokens[0]?:"",
-                phylumName: tokens[1]?: "",
-                className: tokens[2]?: "",
-                orderName: tokens[3]?: "",
-                familyName: tokens[4]?: "",
-                genusName: tokens[5]?: "",
-                scientificName: tokens[5] + ' ' + tokens[6],
-                sourceId: Integer.parseInt(tokens[7])
-            )
-			taxonService.save(taxon)
-        }
-		def taxa = taxonService.list()
+		importDataService.importData()
+		
+//        file.toCsvReader(['charset':'UTF-8', 'skipLines': 1]).eachLine { tokens ->			
+//            taxon = new Taxon(
+//                kingdomName: tokens[0]?:"",
+//                phylumName: tokens[1]?: "",
+//                className: tokens[2]?: "",
+//                orderName: tokens[3]?: "",
+//                familyName: tokens[4]?: "",
+//                genusName: tokens[5]?: "",
+//                scientificName: tokens[5] + ' ' + tokens[6],
+//                sourceId: Integer.parseInt(tokens[7])
+//            )
+//			taxonService.save(taxon)
+//        }
+		def taxa = taxonService.list([:])
 		render taxa as JSON
     }
 	

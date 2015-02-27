@@ -117,3 +117,6 @@ log4j.main = {
 }
 
  grails.plugins.twitterbootstrap.fixtaglib = true
+ grails.gorm.default.mapping = {
+	 id generator:'identity'
+ }

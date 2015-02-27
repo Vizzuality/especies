@@ -16,11 +16,8 @@
 	    <g:form url="[action:'index']" class="form-inline" method="get">
 		    <div class="form-group">
 	        <button id="importBrazil" class="btn btn-info">
-	         Import Brazil's data
+	         Import Data
 	        </button>
-		      <button id="linkGbfiEtAl" class="btn btn-info">
-		        Link GBIF and S+ data
-		      </button>
 	        <g:textField class="form-control input-fullsize" name="query"
 	         value="${params.query}" required="required"
 	         placeholder="Search taxa"/>
