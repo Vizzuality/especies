@@ -5,18 +5,33 @@ import grails.transaction.Transactional
 @Transactional
 class TaxonService {
 
-    List list(params) {
+    def list(params) {
+		System.out.println(params)
 		params = params + [max: 50]
 		params = params + [sort: "scientificName", order: "asc"]
 		def query
+		switch(params.get('collection')) {
+			case 'speciesplus':
+				query = Taxon.where {
+					speciesPlusId != null
+				}
+				break
+			case 'gbif':
+				query = Taxon.where {
+					gbifId != null
+				}
+				break
+			default:
+				query = Taxon.where {
+					sourceId != null
+				}
+		}
 		if(params.get('query') != null) {
-			query = Taxon.where {
+			query = query.where {
 				scientificName =~ params.get('query')+'%'
 			}
-			return query.list(params)
-			
 		}
-		return Taxon.list(params)
+		return [query.list(params), query.count()]
     }
 	
 	Taxon save(taxon) {

@@ -12,19 +12,40 @@
 
 <body>
     <h1>Taxonify <asset:image src="spinner.gif" alt="spinner" class="hide spinner" /></h1>
-    <p>
+
 	    <g:form url="[action:'index']" class="form-inline" method="get">
-		    <div class="form-group">
-	        <button id="importBrazil" class="btn btn-info">
-	         Import Data
-	        </button>
-	        <g:textField class="form-control input-fullsize" name="query"
-	         value="${params.query}" required="required"
-	         placeholder="Search taxa"/>
-	       </div>
-	       <g:submitButton name="submit" value="Search" class="btn btn-default"/>
+	      <p>
+			    <div class="form-group">
+		        <button id="importBrazil" class="btn btn-info">
+		         Import Data
+		        </button>
+		        <div class="radio">
+	            <label>
+	              <input type="radio" name="collection" id="all" value="all"
+	               ${!params.collection || params.collection == "all" ? "checked" : ""}>
+	                Search in all species
+	            </label>
+	          </div>         
+	          <div class="radio">
+	            <label>
+	              <input type="radio" name="collection" id="speciesplus" value="speciesplus"
+	               ${params.collection == "speciesplus" ? "checked" : ""}>
+	                Species+
+	            </label>
+	          </div>
+	          <div class="radio">
+	            <label>
+	              <input type="radio" name="collection" id="gbif" value="gbif"
+	               ${params.collection == "gbif" ? "checked" : ""}>
+	                GBIF
+	            </label>
+	          </div>
+		        <g:textField class="form-control input-fullsize" name="query"
+		         value="${params.query}"  placeholder="Search taxa"/>
+		       </div>
+		       <g:submitButton name="submit" value="Search" class="btn btn-default"/>
+	       </p>
 	    </g:form>
-    </p>
 
     <hr>
 	<g:paginate controller="taxa" action="index" total="${taxaCount}" max="50" />

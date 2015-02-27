@@ -9,12 +9,12 @@ class TaxaController {
 	
     def index() {
         def taxa = taxonService.list(params)
-        [taxa: taxa, taxaCount: Taxon.count()]
+        [taxa: taxa[0], taxaCount: taxa[1]]
     }
     
     def importTaxa() {
 		importDataService.importData()
 		def taxa = taxonService.list([:])
-		render taxa as JSON
+		render taxa[0] as JSON
     }
 }
