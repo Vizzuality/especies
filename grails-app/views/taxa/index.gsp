@@ -48,7 +48,8 @@
 	    </g:form>
 
     <hr>
-	<g:paginate controller="taxa" action="index" total="${taxaCount}" max="50" />
+	<g:paginate controller="taxa" action="index" total="${taxaCount}" max="50"
+	   params="${params}"/>
     <table id="taxa-table" class="table table-bordered table-condensed">
         <thead>
             <tr>
