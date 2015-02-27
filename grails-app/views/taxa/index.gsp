@@ -18,7 +18,7 @@
 			    <div class="form-group">
 		        <button id="importBrazil" class="btn btn-info">
 		         Import Data
-		        </button>
+		        </button> |
 		        <div class="radio">
 	            <label>
 	              <input type="radio" name="collection" id="all" value="all"

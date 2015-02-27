@@ -23,13 +23,15 @@
     <g:layoutHead/>
   </head>
   <body>
-        <g:render template="/shared/navigation"></g:render>
+    <g:render template="/shared/navigation"></g:render>
+    <div class="container-fluid">
+      <div class="row">
         <g:render template="/shared/sidebar"></g:render>
 	      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <g:layoutBody/>
+	         <g:layoutBody/>
 		    </div>
-      </div>
-	    <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+     </div>
+	   <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
     </div>
   </body>
 </html>
