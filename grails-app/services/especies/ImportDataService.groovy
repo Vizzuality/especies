@@ -86,4 +86,25 @@ class ImportDataService {
 		sql.execute(query)
 		sql.close()
     }
+	
+	def importDistributions() {
+		Sql sql = new Sql(dataSource)
+		
+		def file = new File("data/species_distribution.csv")
+		
+		query = "DROP TABLE IF EXISTS tmp_distributions;" +
+			"CREATE TABLE tmp_distributions(brazil_id integer, regions varchar,"+
+			"country_code varchar, establishment_means varchar, remarks varchar);"
+		
+		sql.execute(query)
+		
+		query = "COPY tmp_distributions(brazil_id, regions, country_code,"+
+			"establishment_means, remarks)"+
+			" FROM '"+file.absolutePath+"'"+
+			" WITH DELIMITIER ','"+
+			" ENCODING 'utf-8' CSV HEADER"
+		
+		sql.execute(query)
+		
+	}
 }

@@ -23,35 +23,8 @@
     <g:layoutHead/>
   </head>
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Administrative Taxonomic Database</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Logout</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="${controllerName == "dashboard" ? "active" : "" }">
-              <g:link controller="dashboard" action="index">Dashboard</g:link>
-            <li class="${controllerName == "taxa" ? "active" : "" }">
-              <g:link controller="taxa" action="index">Species</g:link>
-          </ul>
-        </div>
+        <g:render template="/shared/navigation"></g:render>
+        <g:render template="/shared/sidebar"></g:render>
 	      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <g:layoutBody/>
 		    </div>

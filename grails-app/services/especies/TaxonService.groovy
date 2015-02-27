@@ -6,7 +6,6 @@ import grails.transaction.Transactional
 class TaxonService {
 
     def list(params) {
-		System.out.println(params)
 		params = params + [max: 50]
 		params = params + [sort: "scientificName", order: "asc"]
 		def query
