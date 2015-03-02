@@ -2,7 +2,7 @@ package especies
 
 class Distribution {
 
-	static belongsTo = [taxa: Taxon, geoEntity: GeoEntity]
+	static belongsTo = [taxon: Taxon, geoEntity: GeoEntity]
 	
     static constraints = {
     }

@@ -7,6 +7,6 @@ class GeoEntity {
 	static hasMany = [distributions: Distribution]
     static constraints = {
 		name nullable: true
-		isoCode nullable: true
+		isoCode nullable: true, unique: true
     }
 }

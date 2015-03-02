@@ -92,7 +92,7 @@ class ImportDataService {
 		
 		def file = new File("data/species_distribution.csv")
 		
-		query = "DROP TABLE IF EXISTS tmp_distributions;" +
+		def query = "DROP TABLE IF EXISTS tmp_distributions;" +
 			"CREATE TABLE tmp_distributions(brazil_id integer, regions varchar,"+
 			"country_code varchar, establishment_means varchar, remarks varchar);"
 		
@@ -101,10 +101,28 @@ class ImportDataService {
 		query = "COPY tmp_distributions(brazil_id, regions, country_code,"+
 			"establishment_means, remarks)"+
 			" FROM '"+file.absolutePath+"'"+
-			" WITH DELIMITIER ','"+
+			" WITH DELIMITER ','"+
 			" ENCODING 'utf-8' CSV HEADER"
 		
 		sql.execute(query)
 		
+		query = " DELETE FROM geo_entity;"+
+			" INSERT INTO geo_entity (version, iso_code)"+
+			" SELECT DISTINCT 0, unnest(string_to_array(regions, ';'))"+
+			" FROM tmp_distributions;"
+			
+		sql.execute(query)
+		
+		query = "INSERT INTO distribution (version, geo_entity_id, taxon_id)"+
+			" SELECT DISTINCT 0, geo_entity.id, taxon.id"+
+			" FROM ("+
+			" 	SELECT DISTINCT brazil_id, unnest(string_to_array(regions, ';')) as iso_code"+
+			" 	FROM tmp_distributions"+
+			" ) AS src"+
+			" INNER JOIN taxon ON src.brazil_id = taxon.source_id AND src.brazil_id IS NOT NULL"+
+			" INNER JOIN geo_entity ON src.iso_code = geo_entity.iso_code AND src.iso_code IS NOT NULL;"
+			
+		sql.execute(query)
+		sql.close()
 	}
 }

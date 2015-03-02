@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <h1>Taxonify <asset:image src="spinner.gif" alt="spinner" class="hide spinner" /></h1>
+    <h1>Species <asset:image src="spinner.gif" alt="spinner" class="hide spinner" /></h1>
 
 	    <g:form url="[action:'index']" class="form-inline" method="get">
 	      <p>
