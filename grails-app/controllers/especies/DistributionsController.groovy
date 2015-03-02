@@ -5,9 +5,10 @@ import grails.converters.JSON
 class DistributionsController {
 
 	def importDataService
+	def distributionService
 	
     def index() {
-		def distributions = Distribution.list()
+		def distributions = distributionService.list(params)
 		[distributions: distributions[0], distributionsCount: distributions[1]]
 	}
 	
