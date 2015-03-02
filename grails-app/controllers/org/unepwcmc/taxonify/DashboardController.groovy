@@ -1,4 +1,4 @@
-package especies
+package org.unepwcmc.taxonify
 
 class DashboardController {
 

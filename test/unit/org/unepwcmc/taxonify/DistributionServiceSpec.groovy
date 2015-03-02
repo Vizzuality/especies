@@ -1,4 +1,6 @@
-package especies
+package org.unepwcmc.taxonify
+
+import org.unepwcmc.taxonify.DistributionService;
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification

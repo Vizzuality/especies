@@ -1,4 +1,4 @@
-package especies
+package org.unepwcmc.taxonify
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(Taxon)
-class TaxonSpec extends Specification {
+@TestFor(GeoEntity)
+class GeoEntitySpec extends Specification {
 
     def setup() {
     }

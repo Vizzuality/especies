@@ -1,4 +1,4 @@
-package especies
+package org.unepwcmc.taxonify
 
 import grails.converters.JSON
 
