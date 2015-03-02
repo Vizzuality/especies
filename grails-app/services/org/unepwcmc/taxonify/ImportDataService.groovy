@@ -129,4 +129,48 @@ class ImportDataService {
 		sql.execute(query)
 		sql.close()
 	}
+    
+    def importMetaData() {
+        Sql sql = new Sql(dataSource)
+
+        def file = new File("data/species_common_names.csv")
+
+        def query = "DROP TABLE IF EXISTS tmp_distributions;" +
+                "CREATE TABLE tmp_distributions(brazil_id integer, regions varchar,"+
+                "country_code varchar, establishment_means varchar, remarks varchar);"
+
+        sql.execute(query)
+
+        query = "COPY tmp_distributions(brazil_id, regions, country_code,"+
+                "establishment_means, remarks)"+
+                " FROM '"+file.absolutePath+"'"+
+                " WITH DELIMITER ','"+
+                " ENCODING 'utf-8' CSV HEADER"
+
+        sql.execute(query)
+
+        query = "DELETE FROM distribution;"
+
+        sql.execute(query)
+
+        query = "DELETE FROM geo_entity;"+
+                " INSERT INTO geo_entity (version, name)"+
+                " SELECT DISTINCT 0, unnest(string_to_array(regions, ';'))"+
+                " FROM tmp_distributions;"
+
+        sql.execute(query)
+
+        query = "INSERT INTO distribution (version, geo_entity_id, taxon_id)"+
+                " SELECT DISTINCT 0, geo_entity.id, taxon.id"+
+                " FROM ("+
+                " 	SELECT DISTINCT brazil_id, unnest(string_to_array(regions, ';')) as name"+
+                " 	FROM tmp_distributions"+
+                " ) AS src"+
+                " INNER JOIN taxon ON src.brazil_id = taxon.source_id AND src.brazil_id IS NOT NULL"+
+                " INNER JOIN geo_entity ON src.name = geo_entity.name AND src.name IS NOT NULL;"
+
+        sql.execute(query)
+        sql.close()
+        
+    }
 }

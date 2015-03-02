@@ -64,6 +64,7 @@ grails.project.dependency.resolution = {
         compile ":asset-pipeline:1.9.9"
         compile ":rest-client-builder:2.0.0"
         compile ":csv:0.3.1"
+        compile ":postgresql-extensions:4.3.0"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.6.1" // or ":hibernate:3.6.10.18"
