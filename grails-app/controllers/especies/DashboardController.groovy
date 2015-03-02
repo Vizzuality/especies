@@ -27,6 +27,10 @@ class DashboardController {
 					'total': Taxon.where {
 						gbifId != null
 					}.count()
+					],
+				'distributions': [
+					'title': 'Distributions',
+					'total': Distribution.count()
 					]
 			]
 		[stats: stats]
