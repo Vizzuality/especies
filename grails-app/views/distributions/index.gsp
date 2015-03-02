@@ -10,7 +10,7 @@
       Import Distributions
     </button>
 	 </p>
-	 <g:paginate controller="distribution" action="index" total="${distributionsCount}" max="50"
+	 <g:paginate controller="distributions" action="index" total="${distributionsCount}" max="50"
 	    params="${params}"/>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -23,7 +23,7 @@
       <g:each in="${distributions}" var="d">
         <tr>
           <td>${d.taxon.scientificName }</td>
-          <td>${d.geoEntity.isoCode}</td>
+          <td>${d.geoEntity.name}</td>
         </tr>
       </g:each>
     </tbody>

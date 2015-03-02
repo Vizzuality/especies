@@ -105,8 +105,12 @@ class ImportDataService {
 			" ENCODING 'utf-8' CSV HEADER"
 		
 		sql.execute(query)
-		
-		query = " DELETE FROM geo_entity;"+
+
+		query = "DELETE FROM distribution;"
+        
+        sql.execute(query)
+        
+        query = "DELETE FROM geo_entity;"+
 			" INSERT INTO geo_entity (version, name)"+
 			" SELECT DISTINCT 0, unnest(string_to_array(regions, ';'))"+
 			" FROM tmp_distributions;"
@@ -116,7 +120,7 @@ class ImportDataService {
 		query = "INSERT INTO distribution (version, geo_entity_id, taxon_id)"+
 			" SELECT DISTINCT 0, geo_entity.id, taxon.id"+
 			" FROM ("+
-			" 	SELECT DISTINCT brazil_id, unnest(string_to_array(regions, ';')) as iso_code"+
+			" 	SELECT DISTINCT brazil_id, unnest(string_to_array(regions, ';')) as name"+
 			" 	FROM tmp_distributions"+
 			" ) AS src"+
 			" INNER JOIN taxon ON src.brazil_id = taxon.source_id AND src.brazil_id IS NOT NULL"+
