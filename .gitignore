@@ -31,3 +31,8 @@
 
 # IntelliJ Idea
 /.idea
+
+/.settings
+
+/.project
+/.classpath
