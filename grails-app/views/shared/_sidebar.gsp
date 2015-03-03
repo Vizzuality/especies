@@ -10,5 +10,8 @@
          <li class="${controllerName == "distributions" ? "active" : "" }">
            <g:link controller="distributions" action="index">Distributions</g:link>
          </li>
+         <li class="${controllerName == "metaData" ? "active" : "" }">
+            <g:link controller="metaData" action="index">Common Names</g:link>
+         </li>
        </ul>
      </div>

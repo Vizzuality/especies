@@ -4,7 +4,7 @@ $(function(){
 		$('.spinner').removeClass('hide');
 		$(this).attr('disabled', true);
 		$.ajax({
-			url: '/Especies/taxa/importTaxa',
+			url: '/Taxonify/taxa/importTaxa',
 			dataType: 'json',
 			type: 'get',
 			success: function(data) {

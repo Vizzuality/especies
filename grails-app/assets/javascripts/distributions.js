@@ -4,7 +4,7 @@ $(function(){
 		$('.spinner').removeClass('hide');
 		$(this).attr('disabled', true);
 		$.ajax({
-			url: '/Especies/distributions/importData',
+			url: '/Taxonify/distributions/importData',
 			dataType: 'json',
 			type: 'get',
 			success: function(data) {
