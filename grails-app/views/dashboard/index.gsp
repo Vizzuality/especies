@@ -20,7 +20,13 @@
         <tr>
           <td>${s.getValue().title}</td>
           <td></td>
-          <td>${s.getValue().total}</td>
+          <td>
+              <ul>
+                  <li><strong>Total</strong> ${s.getValue().total}</li>
+                  <li><strong>Total accepted</strong> ${s.getValue().totalAccepted}</li>
+                  <li><strong>Total synonyms</strong> ${s.getValue().totalSynonyms}</li>
+              </ul>
+          </td>
           <td></td>
         </tr>
        </g:each>
