@@ -53,6 +53,7 @@
     <table id="taxa-table" class="table table-bordered table-condensed">
         <thead>
             <tr>
+                <th>id</th>
                 <th>Kingdom</th>
                 <th>Phylum</th>
                 <th>Order</th>
@@ -62,6 +63,7 @@
                 <th>Name status</th>
                 <th>Brazil's id</th>
                 <th>Species+ id</th>
+                <th>CITES Listing</th>
                 <th>GBIF id</th>
                 <th>GBIF name</th>
             </tr>
@@ -69,6 +71,7 @@
         <tbody>
             <g:each in="${taxa}" var="s">
                 <tr>
+                    <td>${s.id}</td>
                     <td>${s.kingdomName}</td>
                     <td>${s.phylumName}</td>
                     <td>${s.orderName}</td>
@@ -78,6 +81,7 @@
                     <td>${s.nameStatus}</td>
                     <td>${s.sourceId}</td>
                     <td>${s.speciesPlusId}</td>
+                    <td>${s.citesListing}</td>
                     <td>${s.gbifId }</td>
                     <td>${s.gbifName}</td>
                 </tr>

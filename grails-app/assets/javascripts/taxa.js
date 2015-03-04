@@ -19,6 +19,7 @@ $(function(){
 								data[i].nameStatus +'</td><td>'+
 								data[i].sourceId+'</td><td>'+
 								data[i].speciesPlusId +'</td><td>'+
+                                data[i].citesListing +'</td><td>'+
 			                    data[i].gbifId +'</td><td>'+
 			                    data[i].gbifName +'</td>'+
 								'<td></td></tr>');

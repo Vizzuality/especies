@@ -13,6 +13,7 @@ class Taxon {
     Integer sourceId
     Integer gbifId
 	Integer speciesPlusId
+    String citesListing
 
 	static hasMany = [distributions: Distribution]
 	
@@ -26,5 +27,6 @@ class Taxon {
 		gbifId nullable: true
 		speciesPlusId nullable: true
 		sourceId unique: true, nullable: true
+        citesListing nullable: true
     }
 }

@@ -84,6 +84,30 @@ class ImportDataService {
 			" species_id IS NOT NULL AND tmp_gbif_species_data.gbif_id IS NOT NULL;"
 			
 		sql.execute(query)
+        
+        file = new File('data/species_list_CITES.csv')
+        
+        query = "DROP TABLE IF EXISTS tmp_cites_data;"+
+                " CREATE TABLE tmp_cites_data(species_id integer, kingdom_name varchar,"+
+                " phylum_name varchar, class_name varchar, order_name varchar, family_name varchar," +
+                " genus_name varchar, scientific_name varchar, name_status varchar, cites_listings varchar," +
+                " cites_listings_original varchar);"
+        sql.execute(query)
+        
+        query = "COPY tmp_cites_data(species_id, kingdom_name, phylum_name, class_name, order_name, family_name," +
+                " genus_name, scientific_name, name_status, cites_listings, cites_listings_original)" +
+                " FROM '"+file.absolutePath+"'"+
+                " WITH DELIMITER ','"+
+                " ENCODING 'utf-8' CSV HEADER"
+        sql.execute(query)
+        
+        query = "UPDATE taxon"+
+                " SET cites_listing = cites_listings" +
+                " FROM tmp_cites_data" +
+                " WHERE species_id = species_plus_id AND species_id IS NOT NULL;"
+        
+        sql.execute(query)
+        
 		sql.close()
     }
 	
