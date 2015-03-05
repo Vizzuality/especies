@@ -32,9 +32,14 @@ class ImportDataService {
 			" ENCODING 'utf-8' CSV HEADER;"
 		sql.execute(query)
 		
-		// clear taxon table and rebuild with imported data
-		query = "DELETE FROM taxon;" +
-			"INSERT INTO taxon (version, kingdom_name, phylum_name, class_name, order_name,"+
+        // clear all data
+        query = "DELETE FROM distribution;"+
+            " DELETE FROM meta_data;" +
+            " DELETE FROM taxon;"
+        sql.execute(query)
+        
+		// rebuild with imported data
+		query = "INSERT INTO taxon (version, kingdom_name, phylum_name, class_name, order_name,"+
 			"family_name, genus_name, scientific_name, name_status, source_id)"+
 			"SELECT DISTINCT 0, kingdom_name, phylum_name, class_name,"+
 			"order_name, family_name, genus_name, genus_name || ' ' || scientific_name,"+
