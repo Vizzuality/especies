@@ -9,7 +9,7 @@ class CommonNamesController {
 
     def index() {
         def results = metaDataService.list(params, 'COMMON_NAME')
-        [metaData: results[0], metaDataCount: results[1]]
+        [commonNames: results[0], commonNamesCount: results[1]]
     }
 
     def importData() {

@@ -10,7 +10,7 @@
             Import Common Names
         </button>
     </p>
-    <g:paginate controller="metaData" action="index" total="${metaDataCount}" max="50"
+    <g:paginate controller="commonNames" action="index" total="${commonNamesCount}" max="50"
                 params="${params}"/>
     <table class="table table-bordered table-condensed">
         <thead>
@@ -22,7 +22,7 @@
         </tr>
         </thead>
         <tbody>
-        <g:each in="${metaData}" var="d">
+        <g:each in="${commonNames}" var="d">
             <tr>
                 <td>${d.taxon.scientificName }</td>
                 <td>${d.type}</td>
