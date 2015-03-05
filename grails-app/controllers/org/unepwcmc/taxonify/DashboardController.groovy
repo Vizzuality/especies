@@ -57,7 +57,9 @@ class DashboardController {
 		def auxStats = [
 			'distributions': [
 				'title': 'Distributions',
-				'total': Distribution.count()
+				'total': MetaData.where {
+                    type == 'DISTRIBUTION'
+                }.count()
 			]
 		]
 		[stats: stats, auxStats: auxStats]

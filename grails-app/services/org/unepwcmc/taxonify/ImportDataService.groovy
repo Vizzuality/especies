@@ -33,8 +33,7 @@ class ImportDataService {
 		sql.execute(query)
 		
         // clear all data
-        query = "DELETE FROM distribution;"+
-            " DELETE FROM meta_data;" +
+        query = "DELETE FROM meta_data;" +
             " DELETE FROM taxon;"
         sql.execute(query)
         
@@ -135,26 +134,20 @@ class ImportDataService {
 		
 		sql.execute(query)
 
-		query = "DELETE FROM distribution;"
+		query = "DELETE FROM meta_data WHERE type = 'DISTRIBUTION';"
         
-        sql.execute(query)
-        
-        query = "DELETE FROM geo_entity;"+
-			" INSERT INTO geo_entity (version, name)"+
-			" SELECT DISTINCT 0, unnest(string_to_array(regions, ';'))"+
-			" FROM tmp_distributions;"
-			
 		sql.execute(query)
 		
-		query = "INSERT INTO distribution (version, geo_entity_id, taxon_id)"+
-			" SELECT DISTINCT 0, geo_entity.id, taxon.id"+
-			" FROM ("+
-			" 	SELECT DISTINCT brazil_id, unnest(string_to_array(regions, ';')) as name"+
+		query = "INSERT INTO meta_data(version, taxon_id, value, type, data)"+
+			" SELECT 0, taxon.id, name, 'DISTRIBUTION',"+
+            " ('{\"means\": \"' || establishment_means || '\", \"remarks\": \"' || remarks || '\"}')::JSON" +
+            " FROM ("+
+			" 	SELECT DISTINCT brazil_id, unnest(string_to_array(regions, ';')) as name," +
+                " establishment_means, remarks"+
 			" 	FROM tmp_distributions"+
 			" ) AS src"+
-			" INNER JOIN taxon ON src.brazil_id = taxon.source_id AND src.brazil_id IS NOT NULL"+
-			" INNER JOIN geo_entity ON src.name = geo_entity.name AND src.name IS NOT NULL;"
-			
+			" INNER JOIN taxon ON src.brazil_id = taxon.source_id AND src.brazil_id IS NOT NULL;"
+
 		sql.execute(query)
 		sql.close()
 	}

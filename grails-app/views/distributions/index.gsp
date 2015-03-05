@@ -16,14 +16,18 @@
     <thead>
       <tr>
 	      <th>Species</th>
+          <th>Type</th>
 	      <th>Region</th>
+          <th>Other</th>
       </tr>
     </thead>
     <tbody>
       <g:each in="${distributions}" var="d">
         <tr>
           <td>${d.taxon.scientificName }</td>
-          <td>${d.geoEntity.name}</td>
+          <td>${d.type}</td>
+          <td>${d.value}</td>
+          <td>${d.data}</td>
         </tr>
       </g:each>
     </tbody>

@@ -1,21 +1,18 @@
 package org.unepwcmc.taxonify
 
-import grails.converters.JSON
-
 class DistributionsController {
 
 	def importDataService
-	def distributionService
+	def metaDataService
 	
     def index() {
-		def distributions = distributionService.list(params)
+		def distributions = metaDataService.list(params, 'DISTRIBUTION')
 		[distributions: distributions[0], distributionsCount: distributions[1]]
 	}
 	
 	def importData() {
 		importDataService.importDistributions()
-		def distributions = Distribution.list()
-		render distributions[0]  as JSON
+        render "success"
 	}
 	
 }

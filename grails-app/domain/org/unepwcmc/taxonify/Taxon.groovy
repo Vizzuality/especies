@@ -16,13 +16,12 @@ class Taxon {
     String citesListing
     String description
 
-	static hasMany = [distributions: Distribution]
-	
     static constraints = {
 		phylumName nullable: true
 		orderName nullable: true
 		className nullable: true
 		familyName nullable: true
+        genusName nullable: true
 		nameStatus nullable: true
 		gbifName nullable: true
 		gbifId nullable: true
