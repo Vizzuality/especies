@@ -4,7 +4,7 @@ $(function(){
         $('.spinner').removeClass('hide');
         $(this).attr('disabled', true);
         $.ajax({
-            url: '/Taxonify/metaData/importData',
+            url: '/Taxonify/commonNames/importData',
             dataType: 'json',
             type: 'get',
             success: function(data) {
