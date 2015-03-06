@@ -120,3 +120,5 @@ log4j.main = {
  grails.gorm.default.mapping = {
 	 id generator:'identity'
  }
+grails.plugin.databasemigration.updateOnStart = true
+grails.plugin.databasemigration.updateOnStartFileNames = ['changelog.groovy']
