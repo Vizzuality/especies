@@ -19,19 +19,19 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+            dbCreate = "" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:postgresql://localhost:5432/especies_development"
         }
     }
     test {
         dataSource {
-            dbCreate = "update"
+            dbCreate = ""
             url = "jdbc:postgresql://localhost:5432/especies_test"
         }
     }
     production {
         dataSource {
-            dbCreate = "update"
+            dbCreate = ""
             url = "jdbc:postgresql://localhost:5432/especies_production"
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
