@@ -20,7 +20,7 @@ class TaxonService {
                 default:
                     isNotNull("sourceId")
             }
-            if(!params.get('query').isEmpty()) {
+            if(params.get('query') && !params.get('query').isEmpty()) {
                 def searchQ = params.get("query")+"%"
                 ilike("scientificName", searchQ)
             }
