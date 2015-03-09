@@ -181,4 +181,6 @@ databaseChangeLog = {
 	changeSet(author: "Simao (generated)", id: "1425637293054-10") {
 		addForeignKeyConstraint(baseColumnNames: "taxon_id", baseTableName: "meta_data", baseTableSchemaName: "public", constraintName: "fk_rlnsetf2sk6y8xlxjw7702sqq", deferrable: "false", initiallyDeferred: "false", onDelete: "NO ACTION", onUpdate: "NO ACTION", referencedColumnNames: "id", referencedTableName: "taxon", referencedTableSchemaName: "public", referencesUniqueColumn: "false")
 	}
+
+	include file: 'creating-autocomplete-view.groovy'
 }
