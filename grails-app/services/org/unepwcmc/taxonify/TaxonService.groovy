@@ -8,29 +8,24 @@ class TaxonService {
     def list(params) {
 		params = params + [max: 50]
 		params = params + [sort: "scientificName", order: "asc"]
-		def query
-		switch(params.get('collection')) {
-			case 'speciesplus':
-				query = Taxon.where {
-					speciesPlusId != null
-				}
-				break
-			case 'gbif':
-				query = Taxon.where {
-					gbifId != null
-				}
-				break
-			default:
-				query = Taxon.where {
-					sourceId != null
-				}
-		}
-		if(params.get('query') != null) {
-			query = query.where {
-				scientificName =~ params.get('query')+'%'
-			}
-		}
-		return [query.list(params), query.count()]
+        def query = Taxon.createCriteria()
+        def results = query.list(params) {
+            switch(params.get('collection')) {
+                case 'speciesplus':
+                    isNotNull("speciesPlusId")
+                    break
+                case 'gbif':
+                    isNotNull("gbifId")
+                    break
+                default:
+                    isNotNull("sourceId")
+            }
+            if(!params.get('query').isEmpty()) {
+                def searchQ = params.get("query")+"%"
+                ilike("scientificName", searchQ)
+            }
+        }
+		return [results, results.totalCount]
     }
 	
 	Taxon save(taxon) {
