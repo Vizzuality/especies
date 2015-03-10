@@ -17,9 +17,21 @@ class TaxonService {
                 case 'gbif':
                     isNotNull("gbifId")
                     break
+                case 'noMatches':
+                    isNull("gbifId")
+                    isNull("speciesPlusId")
                 default:
                     isNotNull("sourceId")
             }
+            switch(params.get('nameStatus')) {
+                case 'accepted':
+                    eq("nameStatus", 'NOME_ACEITO')
+                    break;
+                case 'synonyms':
+                    eq("nameStatus", 'SINONIMO')
+                    break;
+            }
+            
             if(params.get('query') && !params.get('query').isEmpty()) {
                 def searchQ = params.get("query")+"%"
                 ilike("scientificName", searchQ)

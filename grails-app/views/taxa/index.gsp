@@ -15,17 +15,21 @@
 
 	    <g:form url="[action:'index']" class="form-inline" method="get">
 	      <p>
-			    <div class="form-group">
-		        <button id="importBrazil" class="btn btn-info">
-		         Import Data
-		        </button> |
-		        <div class="radio">
-	            <label>
-	              <input type="radio" name="collection" id="all" value="all"
-	               ${!params.collection || params.collection == "all" ? "checked" : ""}>
-	                Search in all species
-	            </label>
-	          </div>         
+			 <div class="form-group">
+                 <div class="radio">
+                     <label>
+                    <input type="radio" name="collection" id="all" value="all"
+                     ${!params.collection || params.collection == "all" ? "checked" : ""}>
+                      Search in all species
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                      <input type="radio" name="collection" id="noMatches" value="noMatches"
+                          ${params.collection == "noMatches" ? "checked" : ""}>
+                      No Matches
+                  </label>
+                </div>
 	          <div class="radio">
 	            <label>
 	              <input type="radio" name="collection" id="speciesplus" value="speciesplus"
@@ -40,12 +44,44 @@
 	                GBIF
 	            </label>
 	          </div>
+            </div>
+        </p>
+        <p>
+            <div class="form-group">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="nameStatus" id="all" value="all"
+                            ${!params.nameStatus || params.nameStatus == "all" ? "checked" : ""}>
+                        All status
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="nameStatus" id="accepted" value="accepted"
+                            ${params.nameStatus == "accepted" ? "checked" : ""}>
+                        Accepted
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="nameStatus" id="synonyms" value="synonyms"
+                            ${params.nameStatus == "synonyms" ? "checked" : ""}>
+                        Synonyms
+                    </label>
+                </div>
+            </div>
+        </p>
+        <p>
+            <div class="form-group">
 		        <g:textField class="form-control input-fullsize" name="query"
 		         value="${params.query}"  placeholder="Search taxa"/>
 		       </div>
 		       <g:submitButton name="submit" value="Search" class="btn btn-default"/>
-	       </p>
+	    </p>
 	    </g:form>
+        <button id="importBrazil" class="btn btn-info">
+            Import Data
+        </button>
 
     <hr>
 	<g:paginate controller="taxa" action="index" total="${taxaCount}" max="50"
