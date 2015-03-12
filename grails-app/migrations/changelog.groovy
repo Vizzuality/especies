@@ -81,4 +81,5 @@ databaseChangeLog = {
 
 	include file: 'creating-autocomplete-view.groovy'
     include file: 'updating-autocomplete-view.groovy'
+    include file: 'fix-to-autocomplete-view.groovy'
 }
